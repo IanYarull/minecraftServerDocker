@@ -16,7 +16,7 @@ services:
       - "25565:25565"
 
     volumes:
-      - ./vpn/config:/etc/wireguard
+      - ./vpnContainer/config:/etc/wireguard
       - /lib/modules:/lib/modules:ro
 
     sysctls:
@@ -28,9 +28,9 @@ services:
 
   minecraft:
 
-    build: ./minecraft_server/
+    build: ./minecraftServer/
 
-    container_name: minecraft_server
+    container_name: minecraftServer
 
     working_dir: /minecraft
 
@@ -44,25 +44,25 @@ services:
 
       # Folder volumes for world data
 
-      - ./minecraft_server/data/world:/minecraft/world
-      - ./minecraft_server/data/mods:/minecraft/mods
-      - ./minecraft_server/data/config:/minecraft/config
-      - ./minecraft_server/data/logs:/minecraft/logs
+      - ./minecraftServer/data/world:/minecraft/world
+      - ./minecraftServer/data/mods:/minecraft/mods
+      - ./minecraftServer/data/config:/minecraft/config
+      - ./minecraftServer/data/logs:/minecraft/logs
 
       # Folder volume for neoforge library
 
-      - ./minecraft_server/libraries:/minecraft/libraries
+      - ./minecraftServer/libraries:/minecraft/libraries
 
       # File imports from instance specific configs
 
-      - ./minecraft_server/server.properties:/minecraft/server.properties
-      - ./minecraft_server/user_jvm_args.txt:/minecraft/user_jvm_args.txt
-      - ./minecraft_server/whitelist.json:/minecraft/whitelist.json
-      - ./minecraft_server/banned-players.json:/minecraft/banned-players.json
-      - ./minecraft_server/banned-ips.json:/minecraft/banned-ips.json
-      - ./minecraft_server/usercache.json:/minecraft/usercache.json
-      - ./minecraft_server/ops.json:/minecraft/ops.json
-      - ./minecraft_server/server-icon.png:/minecraft/server-icon.png
+      - ./minecraftServer/server.properties:/minecraft/server.properties
+      - ./minecraftServer/user_jvm_args.txt:/minecraft/user_jvm_args.txt
+      - ./minecraftServer/whitelist.json:/minecraft/whitelist.json
+      - ./minecraftServer/banned-players.json:/minecraft/banned-players.json
+      - ./minecraftServer/banned-ips.json:/minecraft/banned-ips.json
+      - ./minecraftServer/usercache.json:/minecraft/usercache.json
+      - ./minecraftServer/ops.json:/minecraft/ops.json
+      - ./minecraftServer/server-icon.png:/minecraft/server-icon.png
 
     restart: unless-stopped
 
@@ -78,12 +78,12 @@ services:
 
       # Volume to be able to read server files, read only of course
 
-      - ./minecraft_server:/server_files:ro
+      - ./minecraftServer:/server_files:ro
 
       - ./minecraftBackups:/backups
 
     depends_on:
 
-      - minecraft_server
+      - minecraftServer
 
     restart: unless-stopped

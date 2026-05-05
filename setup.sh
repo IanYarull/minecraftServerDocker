@@ -24,7 +24,7 @@ cd "$INSTALL_DIR" || exit
 
 echo "Creating data directories..."
 
-mkdir -p minecraft_server/data/{world,logs,config,mods}
+mkdir -p minecraftServer/data/{world,logs,config,mods}
 
 mkdir minecraftBackups 
 
@@ -32,9 +32,9 @@ mkdir minecraftBackups
 
 echo "Loading server configurations from defaults..."
 
-cp -n minecraft_server/defaultconfigs/*.json minecraft_server/
-cp -n minecraft_server/defaultconfigs/server.properties minecraft_server/
-cp -n minecraft_server/defaultconfigs/modpack-url.txt minecraft_server/
+cp -n minecraftServer/defaultconfigs/*.json minecraftServer/
+cp -n minecraftServer/defaultconfigs/server.properties minecraftServer/
+cp -n minecraftServer/defaultconfigs/modpack-url.txt minecraftServer/
 
 
 # --- Interactive URL Setup ---
@@ -43,7 +43,7 @@ echo "Checking Modpack URL..."
 
 # Check if the active file doesn't exist OR is completely empty
 
-EXISTING_URL=$(grep -v '^#' minecraft_server/modpack-url.txt | grep -v '^$')
+EXISTING_URL=$(grep -v '^#' minecraftServer/modpack-url.txt | grep -v '^$')
 
 if [ -z "$EXISTING_URL" ]; then
 
@@ -53,7 +53,7 @@ if [ -z "$EXISTING_URL" ]; then
 	#Appending new URL to txt file
 
 	if [ -n "$USER_URL" ]; then
-	echo "$USER_URL" >> minecraft_server/modpack-url.txt
+	echo "$USER_URL" >> minecraftServer/modpack-url.txt
         echo "URL saved!"
     fi
 
@@ -67,11 +67,11 @@ fi
 
 echo "Setting up server icon..."
 
-if [ -f minecraft_server/defaultconfigs/server-icon.png ]; then
-    cp -n minecraft_server/defaultconfigs/server-icon.png minecraft_server/data/server-icon.png
+if [ -f minecraftServer/defaultconfigs/server-icon.png ]; then
+    cp -n minecraftServer/defaultconfigs/server-icon.png minecraftServer/data/server-icon.png
 fi
 
-chmod +x minecraft_server/run.sh
+chmod +x minecraftServer/entrypoint.sh
 
 echo "All good! You can now run:"
 echo "cd $INSTALL_DIR && docker compose up -d"

@@ -2,7 +2,7 @@
 
 # --- Library Installation ---
 
-if [ ! -d "libraries" ]; then
+if [ ! -d "libraries" ] || [ -z "$(ls -A libraries)" ]; then
 
 	echo "Libraries folder missing! Downloading NeoForge installer..."
 

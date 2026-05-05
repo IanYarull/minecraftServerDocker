@@ -9,11 +9,10 @@ COPY entrypoint.sh /minecraft/entrypoint.sh
 RUN sed -i 's/\r$//' /minecraft/entrypoint.sh && \
 	chmod +x /minecraft/entrypoint.sh
 
-# Download the Packwiz Bootstrap via wget
+# Download the Packwiz Bootstrap
 
-RUN apt-get update && apt-get install -y wget && \
-	wget -O /minecraft/packwiz-installer-bootstrap.jar https://github.com/packwiz/packwiz-installer-bootstrap/releases/latest/download/packwiz-installer-bootstrap.jar && \
-	rm -rf /var/lib/apt/lists/*
+ADD https://github.com/packwiz/packwiz-installer-bootstrap/releases/latest/download/packwiz-installer-bootstrap.jar /minecraft/packwiz-installer-bootstrap.jar
+
 
 # Pre-accept EULA
 

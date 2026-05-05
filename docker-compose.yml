@@ -1,0 +1,89 @@
+services:
+
+  # --- Wireguard VPN for proxy services (Optional) ---
+
+  wireguard:
+
+    build: ./vpn/
+
+    container_name: wireguard_service
+
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+
+    ports:
+      - "25565:25565"
+
+    volumes:
+      - ./vpn/config:/etc/wireguard
+      - /lib/modules:/lib/modules:ro
+
+    sysctls:
+      - net.ipv4.ip_forward=1
+
+    restart: unless-stopped
+
+  # --- Minecraft Server ---
+
+  minecraft:
+
+    build: ./minecraft_server/
+
+    container_name: minecraft_server
+
+    working_dir: /minecraft
+
+    stdin_open: true # Lets you input
+
+    tty: true        # Lets you terminal in for server admin commands
+
+    network_mode: "service:wireguard" #Uses wireguard for networking with a proxy, optional
+
+    volumes:
+
+      # Folder volumes for world data
+
+      - ./minecraft_server/data/world:/minecraft/world
+      - ./minecraft_server/data/mods:/minecraft/mods
+      - ./minecraft_server/data/config:/minecraft/config
+      - ./minecraft_server/data/logs:/minecraft/logs
+
+      # Folder volume for neoforge library
+
+      - ./minecraft_server/libraries:/minecraft/libraries
+
+      # File imports from instance specific configs
+
+      - ./minecraft_server/server.properties:/minecraft/server.properties
+      - ./minecraft_server/user_jvm_args.txt:/minecraft/user_jvm_args.txt
+      - ./minecraft_server/whitelist.json:/minecraft/whitelist.json
+      - ./minecraft_server/banned-players.json:/minecraft/banned-players.json
+      - ./minecraft_server/banned-ips.json:/minecraft/banned-ips.json
+      - ./minecraft_server/usercache.json:/minecraft/usercache.json
+      - ./minecraft_server/ops.json:/minecraft/ops.json
+      - ./minecraft_server/server-icon.png:/minecraft/server-icon.png
+
+    restart: unless-stopped
+
+  # --- Backup Services ---
+
+  backup_service:
+
+    build: ./backup_service
+
+    container_name: backup_service
+
+    volumes:
+
+      # Volume to be able to read server files, read only of course
+
+      - ./minecraft_server:/server_files:ro
+
+      - ./minecraftBackups:/backups
+
+    depends_on:
+
+      - minecraft_server
+
+    restart: unless-stopped

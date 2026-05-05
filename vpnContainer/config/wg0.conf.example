@@ -1,0 +1,28 @@
+[Interface]
+
+# Private keys can be generated using wg genkey > privatekey
+# You can pipe these in the following way for private key and public key generation:
+#
+# wg genkey | tee privatekey | wg pubkey > publickey
+#
+# After that, it's as simple as cat'ing both keys on both endpoints 
+# and doing the keyswap manually...until I find out that it's super unsafe or something, lol
+
+PrivateKey = [Host Private Key]
+Address = [Host VPN IP]
+
+DNS = 1.1.1.1, 8.8.8.8 
+# Or whatever you prefer for DNS, I won't judge
+
+
+[Peer]
+
+# Self explanatory, I think, it's a key exchange
+
+PublicKey = [Proxy Server Key]
+Endpoint = [Proxy Server's Public IP:Allowed Port for Communication]
+AllowedIPs = [Proxy Server VPN IP]
+
+# Just to be sure!
+PersistentKeepalive = 25
+

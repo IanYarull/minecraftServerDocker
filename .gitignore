@@ -1,0 +1,22 @@
+
+# Private files, no sir :)
+
+minecraftServer/data/
+
+vpnContainer/config/wg0.conf
+
+.env
+
+# Instance specific files
+
+minecraftServer/banned-ips.json
+minecraftServer/banned-players.json
+minecraftServer/ops.json
+minecraftServer/server.properties
+minecraftServer/usercache.json
+minecraftServer/whitelist.json
+minecraftServer/modpack-url.txt
+
+minecraftServer/libraries/*
+
+minecraftBackups/

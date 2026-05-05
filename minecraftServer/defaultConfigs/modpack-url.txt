@@ -1,0 +1,2 @@
+# Add your modpack path to the pack.toml file
+# example: https://your.repo/pack.toml

@@ -4,7 +4,7 @@ services:
 
   wireguard:
 
-    build: ./vpn/
+    build: ./vpnContainer/
 
     container_name: wireguard_service
 
@@ -70,9 +70,9 @@ services:
 
   backup_service:
 
-    build: ./backup_service
+    build: ./backupService
 
-    container_name: backup_service
+    container_name: backupService
 
     volumes:
 
@@ -84,6 +84,6 @@ services:
 
     depends_on:
 
-      - minecraftServer
+      - minecraft
 
     restart: unless-stopped

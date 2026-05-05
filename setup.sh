@@ -32,9 +32,9 @@ mkdir minecraftBackups
 
 echo "Loading server configurations from defaults..."
 
-cp -n minecraftServer/defaultconfigs/*.json minecraftServer/
-cp -n minecraftServer/defaultconfigs/server.properties minecraftServer/
-cp -n minecraftServer/defaultconfigs/modpack-url.txt minecraftServer/
+cp -n minecraftServer/defaultConfigs/*.json minecraftServer/
+cp -n minecraftServer/defaultConfigs/server.properties minecraftServer/
+cp -n minecraftServer/defaultConfigs/modpack-url.txt minecraftServer/
 
 
 # --- Interactive URL Setup ---
@@ -67,8 +67,8 @@ fi
 
 echo "Setting up server icon..."
 
-if [ -f minecraftServer/defaultconfigs/server-icon.png ]; then
-    cp -n minecraftServer/defaultconfigs/server-icon.png minecraftServer/data/server-icon.png
+if [ -f minecraftServer/defaultConfigs/server-icon.png ]; then
+    cp -n minecraftServer/defaultConfigs/server-icon.png minecraftServer/data/server-icon.png
 fi
 
 chmod +x minecraftServer/entrypoint.sh

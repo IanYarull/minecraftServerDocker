@@ -63,7 +63,7 @@ services:
       - ./minecraftServer/usercache.json:/minecraft/usercache.json
       - ./minecraftServer/ops.json:/minecraft/ops.json
       - ./minecraftServer/server-icon.png:/minecraft/server-icon.png
-
+      - ./minecraftServer/modpack-url.txt:/minecraft/modpack-url.txt
     restart: unless-stopped
 
   # --- Backup Services ---

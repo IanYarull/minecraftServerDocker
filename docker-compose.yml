@@ -6,7 +6,7 @@ services:
 
     build: ./vpnContainer/
 
-    container_name: wireguard_service
+    container_name: vpnContainer
 
     cap_add:
       - NET_ADMIN

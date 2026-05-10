@@ -48,7 +48,7 @@ EXISTING_URL=$(grep -v '^#' minecraftServer/modpack-url.txt | grep -v '^$')
 if [ -z "$EXISTING_URL" ]; then
 
 	echo "No active Modpack URL found."
-	read -p "Enter your packwiz pack.toml URL (or press Enter to configure manually later): " USER_URL
+	read -p "Enter your packwiz pack.toml URL (or press Enter to configure manually later), include https header: " USER_URL
 
 	#Appending new URL to txt file
 

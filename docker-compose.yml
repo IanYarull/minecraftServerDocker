@@ -62,7 +62,7 @@ services:
       - ./minecraftServer/banned-ips.json:/minecraft/banned-ips.json
       - ./minecraftServer/usercache.json:/minecraft/usercache.json
       - ./minecraftServer/ops.json:/minecraft/ops.json
-      - ./minecraftServer/server-icon.png:/minecraft/server-icon.png
+      - ./minecraftServer/server-icon.png:/minecraft/server-icon.png:ro
       - ./minecraftServer/modpack-url.txt:/minecraft/modpack-url.txt
     restart: unless-stopped
 

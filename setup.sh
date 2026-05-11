@@ -68,7 +68,7 @@ fi
 echo "Setting up server icon..."
 
 if [ -f minecraftServer/defaultConfigs/server-icon.png ]; then
-    cp -n minecraftServer/defaultConfigs/server-icon.png minecraftServer/data/server-icon.png
+    cp -n minecraftServer/defaultConfigs/server-icon.png minecraftServer/server-icon.png
 fi
 
 chmod +x minecraftServer/entrypoint.sh
